@@ -1,0 +1,25 @@
+CREATE TABLE soda_store (id integer primary key, item text, inventory integer, price integer, can_color text);
+
+INSERT into soda_store VALUES (1, "Dr. Pepper", 10, 1.99, "red"); 
+INSERT into soda_store VALUES (2, "Mountain Dew", 8, 2.50, "green");
+INSERT into soda_store VALUES (3, "Root Beer", 10, 1.50, "brown");
+INSERT into soda_store VALUES (4, "Sprite", 6, 1.99, "green");
+INSERT into soda_store VALUES (5, "Fanta", 4, 1.50, "orange");
+INSERT into soda_store VALUES (6, "Grape", 4, 1.00, "purple");
+INSERT into soda_store VALUES (7, "Cream Soda", 4, 1.00, "brown");
+INSERT into soda_store VALUES (8, "Pepsi", 8, 1.99, "blue");
+INSERT into soda_store VALUES (9, "Coke", 10, 2.50, "red");
+INSERT into soda_store VALUES (10, "Diet Coke", 8, 1.99, "silver");
+INSERT into soda_store VALUES (11, "7up", 6, 1.50, "green");
+INSERT into soda_store VALUES (12, "Ginger Ale", 4, 1.00, "green");
+INSERT into soda_store VALUES (13, "Squirt", 4, 1.00, "yellow");
+INSERT into soda_store VALUES (14, "Diet Pepsi", 8, 1.50, "silver");
+INSERT into soda_store VALUES (15, "Sunkist", 4, 1.00, "orange");
+
+SELECT * FROM soda_store;
+
+--display database ordered by price
+SELECT * FROM soda_store ORDER BY price;
+
+--display database by how many of each type of can color
+SELECT can_color, SUM(inventory) FROM soda_store GROUP BY can_color;
