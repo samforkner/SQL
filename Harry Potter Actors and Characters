@@ -1,0 +1,71 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE Harry_Potter_Actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER,
+    hometown TEXT);
+    
+INSERT INTO Harry_Potter_Actors (name, age, hometown) VALUES ("Daniel Radcliffe", 32, "London");
+INSERT INTO Harry_Potter_Actors (name, age, hometown) VALUES ("Emma Watson", 32, "Paris");
+INSERT INTO Harry_Potter_Actors (name, age, hometown) VALUES ("Rupert Grint", 33, "Harlow");
+INSERT INTO Harry_Potter_Actors (name, age, hometown) VALUES ("Tom Felton", 34, "Epsom");
+INSERT INTO Harry_Potter_Actors (name, age, hometown) VALUES ("Alan Rickman", 69, "London");
+INSERT INTO Harry_Potter_Actors (name, age, hometown) VALUES ("Maggie Smith", 87, "London");
+INSERT INTO Harry_Potter_Actors (name, age, hometown) VALUES ("Michael Gambon", 81, "Dublin");
+
+CREATE TABLE Actor_Facts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    actor_id INTEGER, 
+    net_worth INTEGER, 
+    partner TEXT);
+    
+INSERT INTO Actor_Facts (actor_id, net_worth, partner) VALUES (1, 110000000, "Erin Darke");
+INSERT INTO Actor_Facts (actor_id, net_worth, partner) VALUES (2, 85000000, "Leo Robinton");
+INSERT INTO Actor_Facts (actor_id, net_worth, partner) VALUES (3, 50000000, "Georgia Groome");
+INSERT INTO Actor_Facts (actor_id, net_worth, partner) VALUES (4, 20000000, "Jade Olivia Gordon");
+INSERT INTO Actor_Facts (actor_id, net_worth, partner) VALUES (5, 16000000, "Rima Horton");
+INSERT INTO Actor_Facts (actor_id, net_worth, partner) VALUES (6, 20000000, "Beverly Cross");
+INSERT INTO Actor_Facts (actor_id, net_worth, partner) VALUES (7, 20000000, "Anne Miller");
+
+CREATE TABLE Character_Facts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_id INTEGER,
+    character_name TEXT,
+    house TEXT,
+    specialty TEXT);
+    
+INSERT INTO Character_Facts (actor_id, character_name, house, specialty) VALUES (1, "Harry Potter", "Gryffindor", "parseltounge");
+INSERT INTO Character_Facts (actor_id, character_name, house, specialty) VALUES (2, "Hermione Granger", "Gryffindor", "spells");
+INSERT INTO Character_Facts (actor_id, character_name, house, specialty) VALUES (3, "Ron Weasley", "Gryffindor", "auror");
+INSERT INTO Character_Facts (actor_id, character_name, house, specialty) VALUES (4, "Draco Malfoy", "Slytherin", "pure-blood");
+INSERT INTO Character_Facts (actor_id, character_name, house, specialty) VALUES (5, "Snape", "Slytherin", "potions");
+INSERT INTO Character_Facts (actor_id, character_name, house, specialty) VALUES (6, "Professor McGonagall", "Gryffindor", "shape shifting");
+INSERT INTO Character_Facts (actor_id, character_name, house, specialty) VALUES (7, "Dumbledore", "Gryffindor", "headmaster");
+
+--select actors name, age, and networth 
+SELECT name, age, net_worth
+    FROM Harry_Potter_Actors
+    JOIN Actor_Facts
+    ON Harry_Potter_Actors.id = Actor_Facts.id
+    ORDER BY Actor_Facts.id ASC;
+
+--select the actors name, their character name, and the house they are assigned to    
+SELECT name, character_name, house
+    FROM Harry_Potter_Actors
+    JOIN Character_Facts
+    ON Harry_Potter_Actors.id = Character_Facts.id
+    ORDER BY name;
+
+--select the characters name, their HP specialty, house, and their net worth
+SELECT character_name, specialty, house, net_worth
+    FROM Character_Facts
+    JOIN Actor_Facts
+    ON Character_Facts.id = Actor_Facts.id;
+
+--select the actors name, age, hometown, and their partner info
+SELECT name, age, hometown, partner
+    FROM Harry_Potter_Actors
+    JOIN Actor_Facts
+    ON Harry_Potter_Actors.id = Actor_Facts.id
+    ORDER BY age ASC
